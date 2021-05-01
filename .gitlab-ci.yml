@@ -86,7 +86,7 @@ release-build:
 # of release tags.
 create-docker-image:
   stage: create_docker_image
-  when: manual
+  #when: manual
   before_script:
     # Install a Docker client in the container as to be able to build Docker image(s).
     - wget -q https://download.docker.com/linux/static/stable/x86_64/docker-18.09.6.tgz
