@@ -70,7 +70,7 @@
 					<verbose>true</verbose>
 					<images>
 						<image>
-							<name>bfh/${project.artifactId}</name>
+							<name>registry.gitlab.com/parrot55/${project.artifactId}</name>
 							<build>
 								<contextDir>${project.basedir}/src/main/docker</contextDir>
 								<tags>

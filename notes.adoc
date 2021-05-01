@@ -6,4 +6,8 @@ docker build -t devops/webapp:latest .
 
 === Run
 
-docker run -it -p 8080:8080 devops/webapp 
+docker run -it -p 8080:8080 devops/webapp
+
+=== Build with docker image
+
+docker run -it -v ?:? maven:3.6.1-jdk-11 mvn install

@@ -3,7 +3,7 @@ image: maven:3.6.1-jdk-11
 variables:
   MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end"
-  DOCKER_IMAGE_TO_SCAN: devops-webapp:latest
+  DOCKER_IMAGE_TO_SCAN: registry.gitlab.com/parrot55/devops-webapp:latest
 
 # Cache the Maven repository so that each job does not have to download it.
 cache:
@@ -136,8 +136,8 @@ push-docker-image:
   stage: push_docker_image
   when: manual
   script:
-    - docker login --username ivan --password secret
-    - docker push $DOCKER_IMAGE_TO_SCAN
+#    - docker login --username ivan --password secret
+    - docker push registry.gitlab.com/parrot55/devops-webapp:latest
   only:
     - /^\d+\.\d+\.\d+$/
     - tags
