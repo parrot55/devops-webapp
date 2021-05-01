@@ -30,7 +30,7 @@ master-release:
   stage: release
   when: manual
   script:
-    - git config --global user.email "gitlab@ivankrizsan.se"
+    - git config --global user.email "patrick.mj.roth@bluewin.ch"
     - git config --global user.name "GitLab CI/CD"
     # Fix the repository URL, replacing any host, localhost in my case, with gitlab.
     # Note that gitlab is the name of the container in which GitLab is running.
