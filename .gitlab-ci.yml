@@ -39,14 +39,8 @@ build:
 # of release tags.
 create-docker-image:
   stage: create_docker_image
-  before_script:
-    # Install a Docker client in the container as to be able to build Docker image(s).
-    - wget -q https://download.docker.com/linux/static/stable/x86_64/docker-19.03.12.tgz
-    - tar zxvf docker*.tgz
-    - cp docker/docker /usr/local/bin/docker
   script:
-    - docker info
-    #- mvn docker:build
+    - docker build -f src/main/docker/Dockerfile
 
 # Push the Docker image to a repository.
 # In this example the repository is DockerHub.
