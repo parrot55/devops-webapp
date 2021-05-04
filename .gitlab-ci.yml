@@ -1,4 +1,4 @@
-image: maven:3.6.1-jdk-11
+#image: maven:3.6.1-jdk-11
 
 variables:
   MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
@@ -21,6 +21,7 @@ stages:
 # Run tests.
 build:
   stage: build
+  image: maven:3.6.1-jdk-11
   before_script:
       # Remove the SNAPSHOT from the project's version thus creating the release version number.
     - 'mvn $MAVEN_CLI_OPTS versions:set -DremoveSnapshot -DprocessAllModules=true'
