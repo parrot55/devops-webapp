@@ -40,7 +40,7 @@ build:
 create-docker-image:
   stage: create_docker_image
   script:
-    - docker build -f src/main/docker/Dockerfile
+    - docker build -f src/main/docker/Dockerfile .
 
 # Push the Docker image to a repository.
 # In this example the repository is DockerHub.
