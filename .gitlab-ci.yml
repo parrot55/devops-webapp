@@ -1,9 +1,12 @@
-#image: maven:3.6.1-jdk-11
+image: docker:19.03.12
 
 variables:
   MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
   MAVEN_CLI_OPTS: "--batch-mode --errors --fail-at-end"
   DOCKER_IMAGE_TO_SCAN: registry.gitlab.com/parrot55/devops-webapp:latest
+  
+services:
+  - docker:19.03.12-dind
 
 # Cache the Maven repository so that each job does not have to download it.
 cache:
@@ -36,7 +39,6 @@ build:
 # of release tags.
 create-docker-image:
   stage: create_docker_image
-  image: docker:19.03.12
   before_script:
     # Install a Docker client in the container as to be able to build Docker image(s).
     - wget -q https://download.docker.com/linux/static/stable/x86_64/docker-19.03.12.tgz
