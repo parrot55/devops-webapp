@@ -30,9 +30,10 @@ build:
     - 'mvn $MAVEN_CLI_OPTS versions:set -DremoveSnapshot -DprocessAllModules=true'
     - 'export RELEASE_VERSION=$(mvn --batch-mode --no-transfer-progress --non-recursive help:evaluate -Dexpression=project.version | grep -v "\[.*")'
     - 'echo "Release version: $RELEASE_VERSION"'
-  
   script:
-    - 'mvn $MAVEN_CLI_OPTS install'
+    - 'mvn $MAVEN_CLI_OPTS install'artifacts:
+    paths:
+      - target/devops-webapp*.jar
 
 # Build a Docker image.
 # Action can be manually triggered in the GitLab CI/CD pipeline
@@ -40,6 +41,8 @@ build:
 create-docker-image:
   stage: create_docker_image
   script:
+    - ls -al .
+    - ls -al target
     - docker build -f src/main/docker/Dockerfile .
 
 # Push the Docker image to a repository.
