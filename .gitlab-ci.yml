@@ -38,17 +38,9 @@ build:
     paths:
       - target/devops-webapp*.jar
 
-# Build a Docker image.
-# Action can be manually triggered in the GitLab CI/CD pipeline
-# of release tags.
-create-docker-image:
+# Build and push a Docker image.
+build-docker:
   stage: create_docker_image
   script:
     - docker build -f src/main/docker/Dockerfile -t $DOCKER_IMAGE .
-
-# Push the Docker image to a repository.
-# In this example the repository is DockerHub.
-push-docker-image:
-  stage: push_docker_image
-  script:
     - docker push $DOCKER_IMAGE
