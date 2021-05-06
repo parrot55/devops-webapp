@@ -18,8 +18,10 @@ stages:
   - build
   - release
   - create_docker_image
-  - scan_docker_image
   - push_docker_image
+  
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
 # Run tests.
 build:
@@ -42,18 +44,11 @@ build:
 create-docker-image:
   stage: create_docker_image
   script:
-    - ls -al .
-    - ls -al target
     - docker build -f src/main/docker/Dockerfile .
 
 # Push the Docker image to a repository.
 # In this example the repository is DockerHub.
 push-docker-image:
   stage: push_docker_image
-  when: manual
   script:
-#    - docker login --username ivan --password secret
     - docker push registry.gitlab.com/parrot55/devops-webapp:latest
-  only:
-    - /^\d+\.\d+\.\d+$/
-    - tags
