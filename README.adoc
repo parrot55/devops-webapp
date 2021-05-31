@@ -1,4 +1,6 @@
-= Guide to Testing Spring Boot applications with MockMvc
+= BTI2019 course
+
+== Original code: Guide to Testing Spring Boot applications with MockMvc
 
 https://rieckpil.de/guide-to-testing-spring-boot-applications-with-mockmvc/
 
